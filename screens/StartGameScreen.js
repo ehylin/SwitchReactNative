@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import Card from "../components/Card";
 import colors from "../constants/colors";
 import Input from "../components/Input";
+import { useFonts } from "expo-font";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -24,6 +25,9 @@ const StartGameScreen = ({ onStartGame }) => {
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState("");
 
+    const [loaded] = useFonts({
+        KanitExtraLight: require("../assets/fonts/Kanit-ExtraLight.ttf"),
+    });
     const handleConfirmation = () => {
         const choseNumber = parseInt(value);
         if (choseNumber === NaN || choseNumber <= 0 || choseNumber > 99) return;
@@ -42,6 +46,9 @@ const StartGameScreen = ({ onStartGame }) => {
         console.log(text);
         setValue(text.replace(/[^0-9]/g, ""));
     };
+    if (!loaded) {
+        return null;
+    }
 
     return (
         <KeyboardAvoidingView
@@ -52,14 +59,14 @@ const StartGameScreen = ({ onStartGame }) => {
                 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                     <View style={styles.screen}>
                         <Card>
-                            <Text>Elije un numero</Text>
+                            <Text style={{ fontFamily: "KanitExtraLight" }}>Elije un numero</Text>
                             <Input value={value} onChangeText={handleInput} />
                             <View style={styles.buttonContainer}>
                                 <Pressable
                                     style={styles.cleanButton}
                                     onPress={handleResetInput}
                                 >
-                                    <Text style={{ color: "white" }}>Limpiar</Text>
+                                    <Text style={{ color: "white", fontFamily: "KanitExtraLight" }}>Limpiar</Text>
                                 </Pressable>
                                 <Pressable
                                     style={{
@@ -68,7 +75,7 @@ const StartGameScreen = ({ onStartGame }) => {
                                     }}
                                     onPress={handleConfirmation}
                                 >
-                                    <Text style={{ color: "white" }}>Confirmar</Text>
+                                    <Text style={{ color: "white", fontFamily: "KanitExtraLight" }}>Confirmar</Text>
                                 </Pressable>
                             </View>
                         </Card>

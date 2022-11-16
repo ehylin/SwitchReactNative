@@ -8,7 +8,7 @@ import ResultScreen from "./screens/ResultScreen";
 
 export default function App() {
   const [loaded] = useFonts({
-    RubikBubbles: require("./assets/fonts/RubikBubbles-Regular.ttf"),
+    KanitBold: require("./assets/fonts/Kanit-Bold.ttf"),
   });
 
   const [userNumber, setUserNumber] = useState();
@@ -47,7 +47,7 @@ export default function App() {
     <View style={styles.container}>
       <Header
         title={"Juego react native"}
-        newStyles={{ fontFamily: "RubikBubbles" }}
+        newStyles={{ fontFamily: "KanitBold" }}
       />
       {content}
     </View>
